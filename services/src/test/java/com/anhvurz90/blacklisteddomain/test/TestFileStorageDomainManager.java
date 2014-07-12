@@ -7,16 +7,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.anhvurz90.blacklisteddomain.api.DomainManager;
 import com.anhvurz90.blacklisteddomain.entities.Domain;
-import com.anhvurz90.blacklisteddomain.impl.DummyDomainManagerImpl;
+import com.anhvurz90.blacklisteddomain.impl.FileStorageDomainManagerImpl;
 
-public class TestDummyDomainManager extends TestCase {
+public class TestFileStorageDomainManager extends TestCase {
 	
 	private DomainManager domainManager_;
 	
 	@Override
 	protected void setUp() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		domainManager_ = (DummyDomainManagerImpl)context.getBean("dummyDomainManager");
+		domainManager_ = (FileStorageDomainManagerImpl)context.getBean("fileDomainManager");
 
 		Domain domain1 = new Domain("yahoo.com");
 		Domain domain2 = new Domain("google.com");

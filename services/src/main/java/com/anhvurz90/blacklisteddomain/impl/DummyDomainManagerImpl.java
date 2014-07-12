@@ -40,4 +40,8 @@ public class DummyDomainManagerImpl implements DomainManager {
 		public boolean isBlacklisted(String email) {
 			return domains_.contains(new Domain(email.substring(email.indexOf("@") + 1)));
 		}
+		
+		public void clear() {
+			domains_.clear();
+		}
 }

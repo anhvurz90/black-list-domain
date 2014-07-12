@@ -18,5 +18,7 @@ public interface DomainManager {
     public List<Domain> getAllDomains();
     
     public boolean isBlacklisted(String email);
+    
+    public void clear();
 
 }

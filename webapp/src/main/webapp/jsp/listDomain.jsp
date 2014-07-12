@@ -54,7 +54,7 @@
 					<tr class='<%= (i % 2 == 1)?"even" : "odd"%>'>
 						<td><%= i %></td>
 						<td><%= domains.get(i).getValue() %></td>
-						<td><a href="/BlackListedDomain/deleteDomain?domainName=<%= domains.get(i).getValue() %>">Delete domain</a></td>
+						<td><a href="/BlackListedDomain/deleteDomain?domainName=<%= domains.get(i).getValue() %>">Delete</a></td>
 					</tr>
 				<% } %>
 			</tbody>

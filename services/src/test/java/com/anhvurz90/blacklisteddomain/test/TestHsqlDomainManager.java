@@ -7,16 +7,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.anhvurz90.blacklisteddomain.api.DomainManager;
 import com.anhvurz90.blacklisteddomain.entities.Domain;
-import com.anhvurz90.blacklisteddomain.impl.DummyDomainManagerImpl;
+import com.anhvurz90.blacklisteddomain.impl.HsqlDomainManagerImpl;
 
-public class TestDummyDomainManager extends TestCase {
-	
+public class TestHsqlDomainManager extends TestCase {
 	private DomainManager domainManager_;
 	
 	@Override
 	protected void setUp() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		domainManager_ = (DummyDomainManagerImpl)context.getBean("dummyDomainManager");
+		domainManager_ = (HsqlDomainManagerImpl)context.getBean("hsqlDomainManager");
 
 		Domain domain1 = new Domain("yahoo.com");
 		Domain domain2 = new Domain("google.com");
@@ -35,7 +34,7 @@ public class TestDummyDomainManager extends TestCase {
 
 		assertEquals("Wrong number of domain!", 3, domainManager_.getAllDomains().size());
 	}
-	
+
 	public void testRemoveDomain() {
 		Domain domain1 = new Domain("yahoo.com");
 		domainManager_.removeDomain(domain1);
@@ -46,4 +45,5 @@ public class TestDummyDomainManager extends TestCase {
 	public void testGetAllDomains() {
 		assertEquals("Wrong number of domain!", 2, domainManager_.getAllDomains().size());
 	}
+	
 }

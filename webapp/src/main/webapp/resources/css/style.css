@@ -11,6 +11,7 @@ body
 	width: 250px;
 	text-align: left;
 	border-collapse: collapse;
+	border: 1px solid
 }
 #hor-zebra th
 {
@@ -18,11 +19,13 @@ body
 	font-weight: normal;
 	padding: 10px 8px;
 	color: #039;
+	border: 1px solid
 }
 #hor-zebra td
 {
 	padding: 8px;
 	color: #669;
+	border: 1px solid
 }
 #hor-zebra .odd
 {
