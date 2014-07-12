@@ -9,6 +9,9 @@ public class Domain {
     private int id;
     private String value;
     
+    public Domain() {
+    }
+    
     public Domain(String value) {
     	this.value = value;
     	this.id = (int)(Math.random() * 10000);

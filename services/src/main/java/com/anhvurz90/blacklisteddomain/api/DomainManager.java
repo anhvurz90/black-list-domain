@@ -12,7 +12,11 @@ public interface DomainManager {
     public void addDomain(Domain domain);
 
     public void removeDomain(Domain domain);
+    
+    public void removeDomain(String domainName);
 
     public List<Domain> getAllDomains();
+    
+    public boolean isBlacklisted(String email);
 
 }

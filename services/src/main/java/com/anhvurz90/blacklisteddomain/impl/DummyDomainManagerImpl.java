@@ -31,4 +31,13 @@ public class DummyDomainManagerImpl implements DomainManager {
     public List<Domain> getAllDomains() {
         return domains_;
     }
+
+		@Override
+    public void removeDomain(String domainName) {
+			domains_.remove(new Domain(domainName));
+    }
+		
+		public boolean isBlacklisted(String email) {
+			return domains_.contains(new Domain(email.substring(email.indexOf("@") + 1)));
+		}
 }
