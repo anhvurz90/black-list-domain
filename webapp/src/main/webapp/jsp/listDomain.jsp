@@ -22,11 +22,11 @@
 	</head>
 	<body>
 <!-- Link to add new domain -->	
-		<a href="/BlackListedDomain/addDomain">Add new domain</a>
+		<a href="<%= request.getContextPath() %>/addDomain">Add new domain</a>
 		
 <!-- Check whether email belongs to blacklisted domain -->
 		<h4>Check whether email belongs to blacklisted domain:</h4>	
-		<form method="POST" action="/BlackListedDomain/checkEmail">
+		<form method="POST" action="<%= request.getContextPath() %>/checkEmail">
 			<table>
 				<tr>
 					<td><label>Email</label></td>
@@ -56,7 +56,7 @@
 					<tr class='<%= (i % 2 == 1)?"even" : "odd"%>'>
 						<td><%= i %></td>
 						<td><%= domains.get(i).getValue() %></td>
-						<td><a href="/BlackListedDomain/deleteDomain?domainName=<%= domains.get(i).getValue() %>">Delete</a></td>
+						<td><a href="<%= request.getContextPath() %>/deleteDomain?domainName=<%= domains.get(i).getValue() %>">Delete</a></td>
 					</tr>
 				<% } %>
 			</tbody>

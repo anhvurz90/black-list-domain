@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<h2>Domain Information</h2>
-		<form:form method="POST" action="/BlackListedDomain/listDomain">
+		<form:form method="POST" action='<%=request.getContextPath() + "/listDomain"%>'>
 			<table>
 				<tr>
 					<td><form:label path="value">Name</form:label></td>
