@@ -2,22 +2,22 @@ Blacklisted Domain Management
 =================
 Introduction:
 
- Author: Nguyen Anh Vu
- Email : anhvurz90@gmail.com
- Project git url: https://github.com/anhvurz90/black-list-domain
+ - Author: Nguyen Anh Vu
+ - Email : anhvurz90@gmail.com
+ - Project git url: https://github.com/anhvurz90/black-list-domain
 
  ------------------------
 How to build:
- 1.Build from attached source:
-   1.1.Unzip file BlackListedDomain.zip to a folder
-   1.2.Go to that folder
-   1.3.mvn clean install
+ - 1.Build from attached source:
+   + 1.1.Unzip file BlackListedDomain.zip to a folder
+   + 1.2.Go to that folder
+   + 1.3.mvn clean install
  
  Or if you prefer git: (you do not need the BlackListedDomain.zip file)
- 2.Using git:
-   2.1.git clone https://github.com/anhvurz90/black-list-domain.git
-   2.2.cd black-list-domain
-   2.3.mvn clean install
+ - 2.Using git:
+   + 2.1.git clone https://github.com/anhvurz90/black-list-domain.git
+   + 2.2.cd black-list-domain
+   + 2.3.mvn clean install
  
  You can freely choose one of two approaches above
 
@@ -42,7 +42,6 @@ How to run:
      + domainStorage=hsql -> using hsql storage mechanism
 
 
-
  ------------------------
 Architecture:
  The project includes 2 sub modules: 
@@ -59,3 +58,5 @@ Architecture:
       * listDomain for listing all existing domains in the list      
       * checkEmail for checking whether an email's domain is blacklisted.
     + jquery.form.validator is used to perform some input validations(domain format, email format)
+
+  - For the test, jUnit and Mockito are used.
