@@ -1,14 +1,11 @@
 package com.anhvurz90.blacklisteddomain.impl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.hsqldb.jdbcDriver;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,14 +15,18 @@ import com.anhvurz90.blacklisteddomain.entities.Domain;
 
 public class HsqlDomainManagerImpl implements DomainManager {
 	
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
 	
 	public HsqlDomainManagerImpl(DataSource dataSource) {
-		this.dataSource = dataSource;
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		try {
 			jdbcTemplate.execute("create table domain "
+					+ "(id int not null identity, value varchar(45), primary key(id));");
+		} catch (DataAccessException e) {
+			// log
+		}
+		try {
+			jdbcTemplate.execute("create table domainInit "
 					+ "(id int not null identity, value varchar(45), primary key(id));");
 		} catch (DataAccessException e) {
 			// log
@@ -34,8 +35,29 @@ public class HsqlDomainManagerImpl implements DomainManager {
 
 	@Override
   public void addDomain(Domain domain) {
-		 String SQL = "insert into domain (value) values (?)";
-		 jdbcTemplate.update(SQL, domain.getValue());
+		if (!getAllDomains().contains(domain)) {
+			String SQL = "insert into domain (value) values (?)";
+			jdbcTemplate.update(SQL, domain.getValue());
+		}
+  }
+	
+  @Override
+  public void addDomain(String domainName) {
+  	addDomain(new Domain(domainName));
+  }
+  
+  @Override
+  public void setInitialDomains(List<String> domains) {
+		String SQL = "select * from domainInit";
+		List<Domain> inits = jdbcTemplate.query(SQL, new DomainMapper());
+  	if (inits.size() > 0) return;
+  	
+  	for (String domain : domains) {
+  		addDomain(domain);
+  	}
+  	
+		SQL = "insert into domainInit (value) values (?)";
+		jdbcTemplate.update(SQL, "Initialized!");
   }
 
 	@Override
@@ -64,6 +86,8 @@ public class HsqlDomainManagerImpl implements DomainManager {
 	@Override
   public void clear() {
 		 String SQL = "delete from domain";
+		 jdbcTemplate.update(SQL);
+		 SQL = "delete from domainInit";
 		 jdbcTemplate.update(SQL);
   }
 	

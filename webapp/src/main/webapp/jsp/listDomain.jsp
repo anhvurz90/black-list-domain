@@ -16,11 +16,13 @@
 	<head>
 		 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		 <title>Domain value</title>
-		 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">	
+		 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+	 	 <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+		 <script src="<c:url value="/resources/js/jquery.form-validator.min.js"/>"></script>
 	</head>
 	<body>
 <!-- Link to add new domain -->	
-		<a href="/BlackListedDomain/domain">Add new domain</a>
+		<a href="/BlackListedDomain/addDomain">Add new domain</a>
 		
 <!-- Check whether email belongs to blacklisted domain -->
 		<h4>Check whether email belongs to blacklisted domain:</h4>	
@@ -28,7 +30,7 @@
 			<table>
 				<tr>
 					<td><label>Email</label></td>
-					<td><input name="email"/></td>
+					<td><input name="email" data-validation="email"/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -59,5 +61,8 @@
 				<% } %>
 			</tbody>
 		</table>
+		<script>
+			$.validate();
+		</script>
 	</body>
 </html>

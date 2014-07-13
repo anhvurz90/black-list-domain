@@ -11,9 +11,9 @@
 	</head>
 	<body>
 		<h2>Email checking</h2>
-		The domain of your email is <%= blacklisted?"" : " not" %> blacklisted
+		<span style="color: <%= blacklisted ? "red" : "green" %>">The domain of your email is <%= blacklisted?"" : " not" %> blacklisted</span>
 		<br/>
 		<br/>
-		<a href="/BlackListedDomain/addDomain">Back to domain list</a>
+		<a href="/BlackListedDomain/listDomain">Back to domain list</a>
 	</body>
 </html>

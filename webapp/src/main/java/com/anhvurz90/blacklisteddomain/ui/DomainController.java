@@ -25,19 +25,19 @@ public class DomainController  implements BeanFactoryAware {
 		domainManager = (DomainManager)beanFactory.getBean("domainManager");
 	}
 	
-	@RequestMapping(value = "/domain", method = RequestMethod.GET)
+	@RequestMapping(value = "/addDomain", method = RequestMethod.GET)
 	public ModelAndView student() {
-		return new ModelAndView("domain", "command", new Domain(""));
+		return new ModelAndView("addDomain", "command", new Domain(""));
 	}
 	
-	@RequestMapping(value = "addDomain", method = RequestMethod.POST)
+	@RequestMapping(value = "listDomain", method = RequestMethod.POST)
 	public String addDomain(@ModelAttribute("SpringWeb")Domain domain, ModelMap model) {
 		domainManager.addDomain(domain);
 		model.addAttribute("domains", domainManager.getAllDomains());
 		return "listDomain";
 	}
 	
-	@RequestMapping(value = "addDomain", method = RequestMethod.GET)
+	@RequestMapping(value = "listDomain", method = RequestMethod.GET)
 	public String addDomain2(ModelMap model) {
 		model.addAttribute("domains", domainManager.getAllDomains());
 		return "listDomain";

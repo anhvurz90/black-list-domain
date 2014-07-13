@@ -7,7 +7,6 @@
 	</bean>
 
 	<bean id="fileDomainManager" class="com.anhvurz90.blacklisteddomain.impl.FileStorageDomainManagerImpl" scope="singleton">
-		<!--property name="message" value="Hello World Spring!"/-->
 	</bean>
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -18,7 +17,6 @@
   </bean>
   
 	<bean id="hsqlDomainManager" class="com.anhvurz90.blacklisteddomain.impl.HsqlDomainManagerImpl" scope="singleton">
-		<!--property name="message" value="Hello World Spring!"/-->
 		<constructor-arg ref="dataSource"/>
 	</bean>
 	

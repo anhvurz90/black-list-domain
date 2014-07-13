@@ -12,6 +12,7 @@ import java.util.List;
 public class DummyDomainManagerImpl implements DomainManager {
 
     private List<Domain> domains_;
+    private List<String> initialDomains;
 
     public DummyDomainManagerImpl() {
         domains_ = new ArrayList<Domain>();
@@ -19,7 +20,21 @@ public class DummyDomainManagerImpl implements DomainManager {
 
     @Override
     public void addDomain(Domain domain) {
-        domains_.add(domain);
+    		if (!domains_.contains(domain)) {
+    			domains_.add(domain);
+    		}
+    }
+    
+    @Override
+    public void addDomain(String domainName) {
+    	addDomain(new Domain(domainName));
+    }
+    
+    @Override
+    public void setInitialDomains(List<String> domains) {
+    	for (String domain : domains) {
+    		addDomain(domain);
+    	}
     }
 
     @Override
@@ -44,4 +59,5 @@ public class DummyDomainManagerImpl implements DomainManager {
 		public void clear() {
 			domains_.clear();
 		}
+		
 }

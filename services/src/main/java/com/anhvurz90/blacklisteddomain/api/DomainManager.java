@@ -10,6 +10,10 @@ import java.util.List;
 public interface DomainManager {
 
     public void addDomain(Domain domain);
+    
+    public void addDomain(String domanName);
+    
+    public void setInitialDomains(List<String> domains);
 
     public void removeDomain(Domain domain);
     

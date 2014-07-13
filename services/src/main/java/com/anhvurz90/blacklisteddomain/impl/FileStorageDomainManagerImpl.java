@@ -1,6 +1,7 @@
 package com.anhvurz90.blacklisteddomain.impl;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import com.anhvurz90.blacklisteddomain.entities.Domain;
 public class FileStorageDomainManagerImpl implements DomainManager {
 	
 	private String storageFile = "domain.txt";
+	private String initFile = "init.txt";
 	
 	public List<Domain> domains;
 	
@@ -24,10 +26,34 @@ public class FileStorageDomainManagerImpl implements DomainManager {
 
 	@Override
   public void addDomain(Domain domain) {
-		domains.add(domain);
-		writeDomainsToFile();
+		if (!domains.contains(domain)) {
+			domains.add(domain);
+			writeDomainsToFile();
+		}
   }
-
+	
+  @Override
+  public void addDomain(String domainName) {
+  	addDomain(new Domain(domainName));
+  }
+  
+  @Override
+  public void setInitialDomains(List<String> domains) {
+  	File file = new File(initFile);
+  	if (file.exists()) return;
+  	for (String domain : domains) {
+  		addDomain(domain);
+  	}
+		try {
+			PrintWriter writer = new PrintWriter(
+														new FileWriter(initFile));
+			writer.println("Initialized!");
+			writer.close();
+		} catch (IOException e) {
+			//Log -> can not store data, or write error
+		}
+  }
+	
 	@Override
   public void removeDomain(Domain domain) {
 	  domains.remove(domain);
@@ -53,6 +79,7 @@ public class FileStorageDomainManagerImpl implements DomainManager {
 	public void clear() {
 		domains.clear();
 		writeDomainsToFile();
+		new File(initFile).delete();
 	}
 	
 	private void readDomainsFromFile() {
@@ -74,7 +101,7 @@ public class FileStorageDomainManagerImpl implements DomainManager {
 			PrintWriter writer = new PrintWriter(
 														new FileWriter(storageFile));
 			for (Domain domain : domains) {
-				writer.write(domain.getValue() + "\n");
+				writer.println(domain.getValue());
 			}
 			writer.close();
 		} catch (IOException e) {

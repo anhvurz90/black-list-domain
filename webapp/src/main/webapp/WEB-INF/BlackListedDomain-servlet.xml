@@ -20,6 +20,15 @@
   	
 	<bean id="domainManager" class="com.anhvurz90.blacklisteddomain.impl.HsqlDomainManagerImpl">
 			<constructor-arg ref="dataSource"/>
+		<property name="initialDomains">
+			<list>
+				<value>altavista.com</value>
+				<value>dynamitemail.com</value>
+				<value>horrormail.com</value>
+				<value>pochta.ru</value>
+				<value>web-police.com</value>
+ 			</list>
+		</property>
 	</bean>
 	
 	<!-- ui -->
@@ -30,7 +39,7 @@
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />				 
 	
-	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	<!--bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	</bean>
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -39,7 +48,7 @@
             <ref bean="jacksonMessageConverter"/>
         </list>
     </property>
-	</bean>
+	</bean-->
 	
 	<mvc:annotation-driven />
 	
