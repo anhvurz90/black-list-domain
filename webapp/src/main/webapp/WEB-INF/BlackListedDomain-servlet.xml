@@ -37,7 +37,8 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<mvc:resources mapping="/resources/**" location="/resources/" />				 
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:view-controller path="/" view-name="listDomain"/>				 
 	
 	<!--bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	</bean>

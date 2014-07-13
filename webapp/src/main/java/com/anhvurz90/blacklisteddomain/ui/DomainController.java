@@ -24,6 +24,11 @@ public class DomainController  implements BeanFactoryAware {
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		domainManager = (DomainManager)beanFactory.getBean("domainManager");
 	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "listDomain";
+	}
 	
 	@RequestMapping(value = "/addDomain", method = RequestMethod.GET)
 	public ModelAndView student() {

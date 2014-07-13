@@ -29,7 +29,10 @@ How to deploy:
 
  ------------------------
 How to run:
- Please access the application by the url: http://localhost:8080/BlackListedDomain/listDomain 
+ Please access the application by the url: 
+   + http://localhost:8080/BlackListedDomain or
+   + http://localhost:8080/BlackListedDomain/index.jsp or
+   + http://localhost:8080/BlackListedDomain/listDomain
  (I suggest that you deploy the application in localhost with 8080 port)
 
  ------------------------
