@@ -6,7 +6,6 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anhvurz90.blacklisteddomain.api.DomainManager;
 import com.anhvurz90.blacklisteddomain.entities.Domain;
+import com.anhvurz90.blacklisteddomain.factory.DomainManagerFactory;
 
 @Controller
 public class DomainController  implements BeanFactoryAware {
@@ -22,7 +22,10 @@ public class DomainController  implements BeanFactoryAware {
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		domainManager = (DomainManager)beanFactory.getBean("domainManager");
+		DomainManagerFactory factory = 
+				(DomainManagerFactory)beanFactory.getBean("domainManagerFactory");
+		domainManager = factory.getDomainManager();
+		
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

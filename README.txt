@@ -29,11 +29,19 @@ How to deploy:
 
  ------------------------
 How to run:
- Please access the application by the url: 
-   + http://localhost:8080/BlackListedDomain or
-   + http://localhost:8080/BlackListedDomain/index.jsp or
-   + http://localhost:8080/BlackListedDomain/listDomain
- (I suggest that you deploy the application in localhost with 8080 port)
+ - Please access the application by the url: 
+     + http://localhost:8080/BlackListedDomain or
+     + http://localhost:8080/BlackListedDomain/index.jsp or
+     + http://localhost:8080/BlackListedDomain/listDomain
+   (I suggest that you deploy the application in localhost with 8080 port)
+ - By default, the application user FileStorageDomainManagerImpl as the implementation of DomainManager. 
+   It means data is stored using local file. 
+   If you want to change to use hsql instead, please specify property "domainStorage".
+   For example, in tomcat/conf/catalina.properties, you can set:
+     + domainStorage=file -> using file storage mechanism
+     + domainStorage=hsql -> using hsql storage mechanism
+
+
 
  ------------------------
 Architecture:

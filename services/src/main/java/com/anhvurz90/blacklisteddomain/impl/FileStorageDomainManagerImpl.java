@@ -44,6 +44,8 @@ public class FileStorageDomainManagerImpl implements DomainManager {
   	for (String domain : domains) {
   		addDomain(domain);
   	}
+  	this.domains.clear();
+  	readDomainsFromFile();
 		try {
 			PrintWriter writer = new PrintWriter(
 														new FileWriter(initFile));
